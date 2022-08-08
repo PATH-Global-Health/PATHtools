@@ -64,14 +64,18 @@ load_shapefile <- function(country, admin_level = c(0,1,2), quiet = T,
 #' @importFrom stringi stri_subset stri_extract_first_regex
 #' @importFrom stringr str_remove_all
 #'
-available_shapefile <- function(country = NULL, admin_level = NULL) {
+available_shapefile <- function(country = NA, admin_level = NA) {
 
   # Neither option supplied
-  if(is.null(country) & is.null(admin_level)) stop("Please supply country or Admin level.")
+  if(is.na(country) & is.na(admin_level)) stop("Please supply country or Admin level.")
 
   # Wrong admin_level suppled
   admin_level <- as.numeric(admin_level)
-  if(!is.null(admin_level) & !admin_level %in% 0:2) stop("Admin level must be 0, 1, or 2")
+  adm <- glue::glue("adm{admin_level}")
+
+  if(!is.na(admin_level) & length(admin_level) > 0){
+    if(!admin_level %in% 0:2) stop("Admin level must be 0, 1, or 2")
+  }
 
   # Multiple inputs
   if(length(admin_level) > 1 | length(country) > 1) stop("Only use one input.")
@@ -81,7 +85,7 @@ available_shapefile <- function(country = NULL, admin_level = NULL) {
   filelist <- unlist(lapply(httr::content(req)$tree, "[", "path"), use.names = F)
 
   # Country supplied
-  if(!is.null(country) & is.null(admin_level)) {
+  if(!is.na(country) & is.na(admin_level)) {
     available <- filelist |>
       stringi::stri_subset(regex = glue::glue("{country}.*.json$")) |>
       stringi::stri_extract_first_regex(pattern = "\\d") |>
@@ -92,7 +96,7 @@ available_shapefile <- function(country = NULL, admin_level = NULL) {
   }
 
   # Admin level supplied
-  if(is.null(country) & !is.null(admin_level)) {
+  if(is.na(country) & !is.na(admin_level)) {
     available <- filelist |>
       stringi::stri_subset(regex = glue::glue("^{adm}.*.json$")) |>
       stringr::str_remove_all(glue::glue("{adm}")) |>
@@ -104,7 +108,7 @@ available_shapefile <- function(country = NULL, admin_level = NULL) {
   }
 
   # Both supplied
-  if(!is.null(country) & !is.null(admin_level)) {
+  if(!is.na(country) & !is.na(admin_level)) {
     available <- filelist |>
       stringi::stri_subset(regex = glue::glue("^{adm}.*{country}.*.json$"))
 

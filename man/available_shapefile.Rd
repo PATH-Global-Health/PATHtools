@@ -4,7 +4,7 @@
 \alias{available_shapefile}
 \title{Check if shapefile is available}
 \usage{
-available_shapefile(country = NULL, admin_level = NULL)
+available_shapefile(country = NA, admin_level = NA)
 }
 \arguments{
 \item{country}{Name of country}
