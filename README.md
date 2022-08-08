@@ -4,7 +4,7 @@
 
 <!-- badges: end -->
 
-The goal of `PATHtools` is to provide a common set of miscellanous R functions and assets that could be used by any R-based analytical work. This will allow us to share common resources, which will prevent duplicate code and version-control issues.
+The goal of `PATHtools` is to provide a common set of miscellanous R functions and assets that could be used by any R-based analytical work. This will allow us to share common resources, which will prevent duplicate coding and version-control issues.
 
 This is a **public repository**, which means that there will never be private or protected data and/or code contained within this package.
 
