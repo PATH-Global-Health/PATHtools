@@ -2,7 +2,13 @@
 
 export(available_shapefile)
 export(load_shapefile)
+export(path_palette)
+export(scale_color_path_d)
+importFrom(ggplot2,scale_color_manual)
+importFrom(ggplot2,scale_colour_gradientn)
+importFrom(ggplot2,scale_fill_manual)
 importFrom(glue,glue)
+importFrom(grDevices,colorRampPalette)
 importFrom(httr,GET)
 importFrom(httr,content)
 importFrom(sf,st_read)
