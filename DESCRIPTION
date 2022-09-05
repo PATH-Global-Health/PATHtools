@@ -12,10 +12,21 @@ RoxygenNote: 7.2.1
 URL: https://github.com/PATH-Global-Health/PATHtools
 BugReports: https://github.com/PATH-Global-Health/PATHtools/issues
 Imports: 
+    doSNOW,
+    dplyr,
+    foreach,
+    fs,
+    gdistance,
     ggplot2,
     glue,
     httr,
+    malariaAtlas,
+    parallel,
+    raster,
+    rgdal,
     sf,
+    snow,
+    sp,
     stringi,
     stringr
 Depends: 
