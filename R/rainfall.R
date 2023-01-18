@@ -63,11 +63,10 @@ daily_rainfall <- function(dates, shapefile, fun = "sum", long = F) {
 
   # Convert to long
   if(long == TRUE) {
-    out <- out %>%
-      tidyr::pivot_longer(dplyr::contains("chirps"),
+    out <- tidyr::pivot_longer(out, dplyr::contains("chirps"),
                           names_to = "date",
-                          values_to = "rainfall") %>%
-      dplyr::mutate(date = as.Date(stringr::str_remove(date, "chirps_")))
+                          values_to = "rainfall")
+    out <- dplyr::mutate(out, date = as.Date(stringr::str_remove(date, "chirps_")))
   }
 
   return(out)
