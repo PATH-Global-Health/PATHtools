@@ -26,7 +26,7 @@ load_shapefile <- function(country, admin_level = c(0,1,2), quiet = T,
 
   # Get url components
   rawgh <- "https://raw.githubusercontent.com/"
-  repo <- "PATH-Global-Health/geometries/main/"
+  repo <- "PATH-Global-Health/geometries/main/output"
   adm <- glue::glue("adm{admin_level}")
   address <- glue::glue("{rawgh}{repo}{adm}/{country}/{adm}.json")
 
