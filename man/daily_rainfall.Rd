@@ -4,12 +4,21 @@
 \alias{daily_rainfall}
 \title{Areal rainfall data}
 \usage{
-daily_rainfall(dates, shapefile, fun = "sum", long = F, verbose = T)
+daily_rainfall(
+  dates,
+  shapefile,
+  output_raster = FALSE,
+  fun = "sum",
+  long = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{dates}{A character vector containing the start and end date in "YYYY-MM-DD" format.}
 
-\item{shapefile}{A sf object containing the areal aggregation polygons}
+\item{shapefile}{A sf object containing the areal aggregation polygons.}
+
+\item{output_raster}{TRUE/FALSE Should output be cropped rasters? Default is FALSE.}
 
 \item{fun}{A character string containing the aggregation function, default is "sum".}
 
@@ -18,7 +27,7 @@ daily_rainfall(dates, shapefile, fun = "sum", long = F, verbose = T)
 \item{verbose}{TRUE/FALSE Print progress messages?}
 }
 \value{
-A tibble containing extracted values along with any columns from 'shapefile'.
+A tibble containing extracted values along with any columns from 'shapefile'. If output_raster is TRUE then a SpatRaster object is returned.
 }
 \description{
 Areal rainfall data
