@@ -4,12 +4,13 @@
 #' @param shapefile A sf object containing the areal aggregation polygons
 #' @param fun A character string containing the aggregation function, default is "sum".
 #' @param long TRUE/FALSE Should the output be in "long" format? Default is FALSE.
+#' @param verbose TRUE/FALSE Print progres messages?
 #'
 #' @importFrom dplyr bind_cols contains mutate
 #' @importFrom exactextractr exact_extract
 #' @importFrom sf st_drop_geometry
 #' @importFrom stringr str_remove
-#' @importFrom terra rast
+#' @importFrom terra rast subst
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr pivot_longer
 #'
@@ -17,7 +18,7 @@
 #' @export
 #'
 #'
-daily_rainfall <- function(dates, shapefile, fun = "sum", long = F) {
+daily_rainfall <- function(dates, shapefile, fun = "sum", long = F, verbose = T) {
 
   # Adapted from 'chirps' package
   # https://github.com/ropensci/chirps/blob/master/R/internal_functions.R
@@ -45,6 +46,10 @@ daily_rainfall <- function(dates, shapefile, fun = "sum", long = F) {
   # Download and crop rasters
   message("Downloading files...")
   r <- terra::rast(u1)
+
+  # Set -9999 to NA
+  r <- terra::subst(r, -9999, NA)
+
   # message("Cropping...")
   # r <- terra::crop(r, v, mask = T)
 

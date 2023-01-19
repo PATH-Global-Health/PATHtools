@@ -4,7 +4,7 @@
 \alias{daily_rainfall}
 \title{Areal rainfall data}
 \usage{
-daily_rainfall(dates, shapefile, fun = "sum", long = F)
+daily_rainfall(dates, shapefile, fun = "sum", long = F, verbose = T)
 }
 \arguments{
 \item{dates}{A character vector containing the start and end date in "YYYY-MM-DD" format.}
@@ -14,6 +14,8 @@ daily_rainfall(dates, shapefile, fun = "sum", long = F)
 \item{fun}{A character string containing the aggregation function, default is "sum".}
 
 \item{long}{TRUE/FALSE Should the output be in "long" format? Default is FALSE.}
+
+\item{verbose}{TRUE/FALSE Print progres messages?}
 }
 \value{
 A tibble containing extracted values along with any columns from 'shapefile'.
