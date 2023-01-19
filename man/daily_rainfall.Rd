@@ -15,7 +15,7 @@ daily_rainfall(dates, shapefile, fun = "sum", long = F, verbose = T)
 
 \item{long}{TRUE/FALSE Should the output be in "long" format? Default is FALSE.}
 
-\item{verbose}{TRUE/FALSE Print progres messages?}
+\item{verbose}{TRUE/FALSE Print progress messages?}
 }
 \value{
 A tibble containing extracted values along with any columns from 'shapefile'.

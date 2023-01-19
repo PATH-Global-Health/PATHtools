@@ -4,13 +4,13 @@
 #' @param shapefile A sf object containing the areal aggregation polygons
 #' @param fun A character string containing the aggregation function, default is "sum".
 #' @param long TRUE/FALSE Should the output be in "long" format? Default is FALSE.
-#' @param verbose TRUE/FALSE Print progres messages?
+#' @param verbose TRUE/FALSE Print progress messages?
 #'
 #' @importFrom dplyr bind_cols contains mutate
 #' @importFrom exactextractr exact_extract
 #' @importFrom sf st_drop_geometry
 #' @importFrom stringr str_remove
-#' @importFrom terra rast subst
+#' @importFrom terra rast subst vect crop
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr pivot_longer
 #'
@@ -24,7 +24,7 @@ daily_rainfall <- function(dates, shapefile, fun = "sum", long = F, verbose = T)
   # https://github.com/ropensci/chirps/blob/master/R/internal_functions.R
 
   # Convert sf shapefile to SpatVector (faster for terra::crop and extract)
-  v <- vect(shapefile)
+  v <- terra::vect(shapefile)
 
   # Keep options for future customization
   resolution = 0.05
