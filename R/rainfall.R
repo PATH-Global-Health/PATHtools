@@ -24,7 +24,7 @@ daily_rainfall <- function(dates, shapefile, fun = "sum", long = F, verbose = T)
   # https://github.com/ropensci/chirps/blob/master/R/internal_functions.R
 
   # Convert sf shapefile to SpatVector (faster for terra::crop and extract)
-  # v <- vect(shapefile)
+  v <- vect(shapefile)
 
   # Keep options for future customization
   resolution = 0.05
@@ -47,11 +47,12 @@ daily_rainfall <- function(dates, shapefile, fun = "sum", long = F, verbose = T)
   message("Downloading files...")
   r <- terra::rast(u1)
 
+  message("Cropping...")
+  r <- terra::crop(r, v, mask = T)
+
   # Set -9999 to NA
   r <- terra::subst(r, -9999, NA)
 
-  # message("Cropping...")
-  # r <- terra::crop(r, v, mask = T)
 
   # Rename raster layers
   names(r) <- paste("chirps", seqdate, sep = "_")
