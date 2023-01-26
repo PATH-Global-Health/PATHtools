@@ -10,7 +10,8 @@ daily_rainfall(
   output_raster = FALSE,
   fun = "mean",
   long = FALSE,
-  verbose = TRUE
+  verbose = TRUE,
+  pop_weight = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ daily_rainfall(
 \item{long}{TRUE/FALSE Should the output be in "long" format? Default is FALSE.}
 
 \item{verbose}{TRUE/FALSE Print progress messages?}
+
+\item{pop_weight}{TRUE/FALSE Should vaulues be weighted based on WorldPop population estimates? Default is FALSE}
 }
 \value{
 A tibble containing extracted values along with any columns from 'shapefile'. If output_raster is TRUE then a SpatRaster object is returned.
