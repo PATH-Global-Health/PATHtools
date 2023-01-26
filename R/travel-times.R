@@ -12,10 +12,8 @@
 #' @importFrom malariaAtlas getShp getRaster
 #' @importFrom raster writeRaster
 #'
-#' @return
 #' @export
 #'
-#' @examples
 get_friction_surface <- function(
   shp = NULL,
   extent = NULL,
@@ -92,7 +90,6 @@ get_friction_surface <- function(
 #' @importFrom fs path
 #'
 #' @export
-#' @return
 #'
 
 create_travel_surface <- function(

@@ -32,7 +32,6 @@ path_pals <- list(
 #'
 #' @importFrom grDevices colorRampPalette
 #'
-#' @return
 #' @export
 #'
 path_palette <- function(name = "path_style", n, type = c("discrete", "continuous")) {
@@ -63,7 +62,6 @@ path_palette <- function(name = "path_style", n, type = c("discrete", "continuou
 #'
 #' @importFrom ggplot2 scale_color_manual scale_fill_manual scale_colour_gradientn
 #'
-#' @return
 #' @export
 #'
 scale_color_path_d <- function(name = "path_style") {
