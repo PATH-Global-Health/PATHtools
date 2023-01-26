@@ -8,7 +8,7 @@ daily_rainfall(
   dates,
   shapefile,
   output_raster = FALSE,
-  fun = "sum",
+  fun = "mean",
   long = FALSE,
   verbose = TRUE
 )
