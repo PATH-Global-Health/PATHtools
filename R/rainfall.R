@@ -18,7 +18,7 @@
 #' @return A tibble containing extracted values along with any columns from 'shapefile'. If output_raster is TRUE then a SpatRaster object is returned.
 #' @export
 #'
-daily_rainfall <- function(dates, shapefile, output_raster = FALSE, fun = "sum", long = FALSE, verbose = TRUE) {
+daily_rainfall <- function(dates, shapefile, output_raster = FALSE, fun = "mean", long = FALSE, verbose = TRUE) {
   # Adapted from 'chirps' package
   # https://github.com/ropensci/chirps/blob/master/R/internal_functions.R
 

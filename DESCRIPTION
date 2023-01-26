@@ -25,6 +25,7 @@ Imports:
     parallel,
     raster,
     rgdal,
+    scales,
     sf,
     snow,
     sp,
