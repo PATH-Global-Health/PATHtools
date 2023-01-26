@@ -6,19 +6,21 @@
 #' @param fun A character string containing the aggregation function, default is "sum".
 #' @param long TRUE/FALSE Should the output be in "long" format? Default is FALSE.
 #' @param verbose TRUE/FALSE Print progress messages?
+#' @param pop_weight TRUE/FALSE Should vaulues be weighted based on WorldPop population estimates? Default is FALSE
 #'
 #' @importFrom dplyr bind_cols contains mutate
 #' @importFrom exactextractr exact_extract
 #' @importFrom sf st_drop_geometry
 #' @importFrom stringr str_remove
-#' @importFrom terra rast subst vect crop
+#' @importFrom terra rast subst vect crop resample
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr pivot_longer
+#' @importFrom pins board_url pin_read
 #'
 #' @return A tibble containing extracted values along with any columns from 'shapefile'. If output_raster is TRUE then a SpatRaster object is returned.
 #' @export
 #'
-daily_rainfall <- function(dates, shapefile, output_raster = FALSE, fun = "mean", long = FALSE, verbose = TRUE) {
+daily_rainfall <- function(dates, shapefile, output_raster = FALSE, fun = "mean", long = FALSE, verbose = TRUE, pop_weight = FALSE) {
   # Adapted from 'chirps' package
   # https://github.com/ropensci/chirps/blob/master/R/internal_functions.R
 
@@ -67,7 +69,21 @@ daily_rainfall <- function(dates, shapefile, output_raster = FALSE, fun = "mean"
     # Extract areal values
     message("Extracting areal summaries...")
     # vv <- terra::extract(r, v, fun = fun)[,-1]
-    vv <- exactextractr::exact_extract(r, shapefile, fun = fun, progress = F)
+    if(pop_weight == TRUE) {
+      message("Weighting by population...")
+      # Load pop raster from pinned dataset
+      b <- pins::board_url("https://PATH-Global-Health.github.io/PATHtools/pins-board/")
+      pr <- pins::pin_read(b, "global-pop")
+      pr <- terra::resample(terra::crop(terra::rast(pr), v, mask = T), r)
+
+      vv <- exactextractr::exact_extract(r, shapefile,
+                                         fun = paste("weighted", fun, sep = "_"),
+                                         weights = pr, default_weight = 0, progress = F)
+
+    } else {
+      vv <- exactextractr::exact_extract(r, shapefile, fun = fun, progress = F)
+      }
+
     names(vv) <- paste("chirps", seqdate, sep = "_")
 
     # Join and export

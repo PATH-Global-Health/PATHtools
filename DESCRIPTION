@@ -24,6 +24,7 @@ Imports:
     httr,
     malariaAtlas,
     parallel,
+    pins,
     raster,
     rgdal,
     scales,
