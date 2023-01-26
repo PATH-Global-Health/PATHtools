@@ -11,7 +11,7 @@ board <- board_folder(here("pkgdown/assets/pins-board"), versioned = FALSE)
 r <- rast("C:/Users/jmillar/Box/Africa Data and Analytics for community case Management/ccm-africa/data/raster/WorldPop/ppp_2020_1km_Aggregated_optim.tif")
 
 # write to package data
-use_data(r, overwrite = TRUE)
+# use_data(r, overwrite = TRUE)
 
 # Write pin to board
 board |> pin_write(r, name = "global-pop", title = "WorldPop global raster", description = "2021 WorldPop global population raster (appx. 1 sq. km. resolution)")
