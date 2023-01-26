@@ -8,7 +8,8 @@ board <- board_folder(here("pkgdown/assets/pins-board"), versioned = FALSE)
 
 
 # WorldPop 2021 Global Raster (COG version) -------------
-r <- rast("C:/Users/jmillar/Box/Africa Data and Analytics for community case Management/ccm-africa/data/raster/WorldPop/ppp_2020_1km_Aggregated_optim.tif")
+# r <- rast("C:/Users/jmillar/Box/Africa Data and Analytics for community case Management/ccm-africa/data/raster/WorldPop/ppp_2020_1km_Aggregated_optim.tif")
+r <- raster::raster("C:/Users/jmillar/Box/Africa Data and Analytics for community case Management/ccm-africa/data/raster/WorldPop/ppp_2020_1km_Aggregated_optim.tif")
 
 # write to package data
 # use_data(r, overwrite = TRUE)
