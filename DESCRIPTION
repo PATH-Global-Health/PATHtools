@@ -9,7 +9,8 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-URL: https://github.com/PATH-Global-Health/PATHtools
+URL: https://github.com/PATH-Global-Health/PATHtools,
+    https://path-global-health.github.io/PATHtools/
 BugReports: https://github.com/PATH-Global-Health/PATHtools/issues
 Imports: 
     doSNOW,
@@ -36,3 +37,4 @@ Imports:
     tidyr
 Depends: 
     R (>= 2.10)
+LazyData: true
