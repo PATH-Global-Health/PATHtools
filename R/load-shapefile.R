@@ -26,21 +26,21 @@ load_shapefile <- function(country, admin_level = c(0,1,2), quiet = T,
 
   # Get url components
   rawgh <- "https://raw.githubusercontent.com/"
-  repo <- "PATH-Global-Health/geometries/main/output"
+  repo <- "PATH-Global-Health/geometries/main/country"
   adm <- glue::glue("adm{admin_level}")
-  address <- glue::glue("{rawgh}{repo}{adm}/{country}/{adm}.json")
+  address <- glue::glue("{rawgh}{repo}/{country}/{adm}.json")
 
   # Check if file exist
   req <- httr::GET("https://api.github.com/repos/PATH-Global-Health/geometries/git/trees/main?recursive=1")
   filelist <- unlist(lapply(httr::content(req)$tree, "[", "path"), use.names = F)
 
-  available <- filelist |>
-    stringi::stri_subset(regex = glue::glue("^{adm}.*.json$")) |>
-    stringr::str_remove_all(glue::glue("{adm}")) |>
-    stringr::str_remove_all(glue::glue("/")) |>
-    stringr::str_remove_all(glue::glue(".json"))
-
-  if(!country %in% available) stop(glue::glue("{country} not availible for Admin {admin_level}, use available_shapefile(admin_level = {admin_level}) to see available countries."))
+  # available <- filelist |>
+  #   stringi::stri_subset(regex = glue::glue("^{adm}.*.json$")) |>
+  #   stringr::str_remove_all(glue::glue("{adm}")) |>
+  #   stringr::str_remove_all(glue::glue("/")) |>
+  #   stringr::str_remove_all(glue::glue(".json"))
+  #
+  # if(!country %in% available) stop(glue::glue("{country} not availible for Admin {admin_level}, use available_shapefile(admin_level = {admin_level}) to see available countries."))
 
   # Load GeoJSON as sf object
   out <- sf::st_read(address, quiet = quiet)
@@ -57,7 +57,7 @@ load_shapefile <- function(country, admin_level = c(0,1,2), quiet = T,
 #' @param admin_level Numeric value either 0, 1, or 2.
 #'
 #' @return Printed message in console
-#' @export
+#'
 #'
 #' @importFrom glue glue
 #' @importFrom httr GET content
