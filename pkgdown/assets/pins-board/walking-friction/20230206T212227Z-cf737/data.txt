@@ -1,0 +1,10 @@
+file: walking-friction.rds
+file_size: 1129
+pin_hash: cf7375d51f9611b8
+type: rds
+title: Malaria Atlas Project - Walking friction surface
+description: 2019 estimated global walking friction raster (~ 1 km. res. ) from Weiss
+  et al. 2020
+tags: ~
+created: 20230206T212227Z
+api_version: 1.0
