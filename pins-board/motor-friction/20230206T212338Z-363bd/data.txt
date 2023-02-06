@@ -1,0 +1,10 @@
+file: motor-friction.rds
+file_size: 1124
+pin_hash: 363bd971149caf3a
+type: rds
+title: Malaria Atlas Project - Motorized friction surface
+description: 2019 estimated global motorized friction raster (~ 1 km. res. ) from
+  Weiss et al. 2020
+tags: ~
+created: 20230206T212338Z
+api_version: 1.0
