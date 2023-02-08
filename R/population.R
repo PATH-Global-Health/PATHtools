@@ -58,3 +58,4 @@ define_urban <- function(population_raster, rururb_cutoff = 300, min_urbsize = 2
 
   return(urb_raster)
 }
+
