@@ -40,6 +40,7 @@ define_urban <- function(population_raster, rururb_cutoff = 300, min_urbsize = 2
   # urb.raster=raster::mask(population_raster, pop.sp[pop.sp$pop>min_urbsize,])
   pop_sp <- terra::extract(population_raster, pop_urb_cl_shp, fun = "sum", na.rm = TRUE)
   urb_raster <- terra::mask(population_raster, pop_urb_cl_shp[which(pop_sp$pop >= min_urbsize),])
+  urb_raster[urb_raster <= rururb_cutoff] = NA
 
   if(verbose) {
     # Print message
@@ -57,3 +58,4 @@ define_urban <- function(population_raster, rururb_cutoff = 300, min_urbsize = 2
 
   return(urb_raster)
 }
+
