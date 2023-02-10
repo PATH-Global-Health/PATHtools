@@ -16,7 +16,7 @@
 #' @importFrom httr GET content
 #' @importFrom stringi stri_subset stri_extract_first_regex
 #' @importFrom stringr str_remove_all
-#' @importFrom utils download.file
+#' @importFrom utils download.file URLencode
 #'
 
 load_shapefile <- function(country, admin_level = c(0,1,2), quiet = T,
@@ -43,7 +43,7 @@ load_shapefile <- function(country, admin_level = c(0,1,2), quiet = T,
   # if(!country %in% available) stop(glue::glue("{country} not availible for Admin {admin_level}, use available_shapefile(admin_level = {admin_level}) to see available countries."))
 
   # Load GeoJSON as sf object
-  out <- sf::st_read(address, quiet = quiet)
+  out <- sf::st_read(URLencode(address), quiet = quiet)
 
   # Download if requested
   if(download) download.file(address, destfile)
