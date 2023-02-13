@@ -5,6 +5,15 @@ library(terra)
 
 # Create pins board in pgkdown site
 board <- board_folder(here("pkgdown/assets/pins-board"), versioned = FALSE)
+# board <- board_url("https://path-global-health.github.io/PATHtools/pins-board/")
+
+# Making Cloud Optimizied GeoTIFF
+# gdalUtilities::gdal_translate(src_dataset = in.tif,
+#                               dst_dataset = out.tif,
+#                               co = matrix(c("TILED=YES",
+#                                             "COPY_SRC_OVERVIEWS=YES",
+#                                             "COMPRESS=DEFLATE"),
+#                                           ncol = 1))
 
 
 # WorldPop 2021 Global Raster (COG version) -------------
@@ -37,6 +46,16 @@ board |> pin_write(
   name = "motor-friction",
   title = "Malaria Atlas Project - Motorized friction surface",
   description = "2019 estimated global motorized friction raster (~ 1 km. res. ) from Weiss et al. 2020")
+board |> write_board_manifest()
+
+# Malaria incidence
+r <- raster::raster(paste0("C:/Users/", Sys.info()[7], "/Box/Spatial Repository/MAP Global Malaria Incidence/processed/202206_Global_Pf_Incidence_Rate_2020.tif"))
+
+board |> pin_write(
+  r,
+  name = "map-incidence-2020",
+  title = "Malaria Atlas Project - Global malaria incidence",
+  description = "2020 estimated malaria cases per person raster (~ 5 km res)")
 board |> write_board_manifest()
 
 
