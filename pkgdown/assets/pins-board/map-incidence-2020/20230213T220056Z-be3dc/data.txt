@@ -1,0 +1,9 @@
+file: map-incidence-2020.rds
+file_size: 1121
+pin_hash: be3dc66f16b5927e
+type: rds
+title: Malaria Atlas Project - Global malaria incidence
+description: 2020 estimated malaria cases per person raster (~ 5 km res)
+tags: ~
+created: 20230213T220056Z
+api_version: 1.0
