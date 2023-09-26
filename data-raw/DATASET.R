@@ -27,6 +27,17 @@ r <- raster::raster(paste0("C:/Users/", Sys.info()[7], "/Box/Africa Data and Ana
 board |> pin_write(r, name = "global-pop", title = "WorldPop global raster", description = "2021 WorldPop global population raster (appx. 1 sq. km. resolution)")
 board |> write_board_manifest()
 
+r <- terra::rast(paste0("C:/Users/", Sys.info()[7], "/Box/Africa Data and Analytics for community case Management/ccm-africa/data/raster/WorldPop/ppp_2020_1km_Aggregated_optim.tif"))
+
+# write to package data
+# use_data(r, overwrite = TRUE)
+
+# Write pin to board
+board |> pin_write(r, name = "global-pop-terra", title = "WorldPop global raster (terra)", description = "2021 WorldPop global population raster (appx. 1 sq. km. resolution)")
+board |> write_board_manifest()
+
+
+
 # MAP surfaces ----------------------
 # Walking friction
 r <- raster::raster(paste0("C:/Users/", Sys.info()[7], "/Box/Spatial Repository/MAP Travel Time Estimation/processed/202001_Global_Walking_Only_Friction_Surface_2019.tif"))
