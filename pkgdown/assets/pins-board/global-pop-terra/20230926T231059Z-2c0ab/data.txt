@@ -1,0 +1,9 @@
+file: global-pop-terra.rds
+file_size: 920293
+pin_hash: 2c0ab656a3483ff0
+type: rds
+title: WorldPop global raster (terra)
+description: 2021 WorldPop global population raster (appx. 1 sq. km. resolution)
+tags: ~
+created: 20230926T231059Z
+api_version: 1
