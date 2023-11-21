@@ -25,6 +25,7 @@ Imports:
     malariaAtlas,
     parallel,
     pins,
+    purrr,
     raster,
     rgdal,
     scales,
